@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon"
+     "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "mongoose",
+    "express",
+    "backend"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
