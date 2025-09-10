@@ -19,7 +19,7 @@ const userSCHEMA = new Schema(
             type : String , 
             required : true ,
         } ,
-        addess : {
+        address : {
             type : String , 
             required : true ,
 
