@@ -18,6 +18,12 @@ app.use(cors({
 
 app.use(cookieParser())
 
+import userRoutes from "../src/routes/user.routes.js"
+import porductRoutes from "../src/routes/product.routes.js"
+
+app.use("/api/v1/user", userRoutes)
+app.use("/api/v1/product" , porductRoutes)
+
 
 
 
