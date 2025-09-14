@@ -1,1 +1,1 @@
-export const DB_NAME = "chorBAZAAR.com"
+export const DB_NAME = "SHOPPING_WEBSITE"
