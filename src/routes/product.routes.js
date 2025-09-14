@@ -4,12 +4,12 @@ import {
     registerPRODUCT, 
     getPRODUCT,
 
-} from "../controllers/PRODUCT.controllers";
+} from "../controllers/PRODUCT.controllers.js";
 
 
 const router = Router()
 
-router.route("/add-product").post(registerPRODUCT)
-router.route("/all-product").get(getPRODUCT)
+router.route("/add").post(registerPRODUCT)
+router.route("/list").get(getPRODUCT)
 
 export default router;

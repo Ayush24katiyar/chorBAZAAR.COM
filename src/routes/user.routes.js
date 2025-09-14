@@ -9,7 +9,7 @@ import {
     loginUSER ,
     logoutUSER
 
- } from "../controllers/USER.controllers";
+ } from "../controllers/USER.controllers.js";
  
 
  
