@@ -66,3 +66,6 @@ const registerPRODUCT = asyncHandler(async (req, res) => {
 const getPRODUCT = asyncHandler(async (req ,res) => {
     return res.status(200).json(new apiresponse(200 , req.product , "current product listed details"))
 })
+
+
+export {registerPRODUCT , getPRODUCT }
