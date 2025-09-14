@@ -8,3 +8,5 @@ if(req.user.role !== role) {
     throw new apierror(400 , "access denied u need to have seller role !")
 }
 })
+
+export { requiredROLE }
