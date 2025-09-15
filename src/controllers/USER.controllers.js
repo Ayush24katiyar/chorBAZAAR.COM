@@ -107,8 +107,8 @@ const loginUSER = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .cookie("access token", accesstoken, options)
-    .cookie("refresh token", refreshtoken, options)
+    .cookie("accesstoken", accesstoken, options)
+    .cookie("refreshtoken", refreshtoken, options)
     .json(
       new apiresponse(
         200,
