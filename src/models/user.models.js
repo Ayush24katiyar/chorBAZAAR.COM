@@ -40,13 +40,11 @@ const userSCHEMA = new Schema(
 )
 
 userSCHEMA.pre("save", async function (next) {
-    if (!this.isModified("password")) return next() 
-
-
-    this.password = bcrypt.hash(this.password , 10)
-
-    next()
-
+    if (!this.isModified("password")) {
+        return next();
+    }
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
 })
 
 
@@ -56,33 +54,31 @@ userSCHEMA.methods.ispasswordcorrect = async function (password) {
 
 }
 
-userSCHEMA.methods.generateAccessToken = async function () {
-    return jwt.sign({
-        _id : this._id , 
-        email : this.email , 
-        username :  this.username , 
-    } ,
-    process.env.ACCESS_TOKEN_SECRET  ,
-    {
-        expiresIn : 'ACCESSS_TOKEN_EXPIRY'
-    }
+userSCHEMA.methods.generateAccessToken = function () {
+    return jwt.sign(
+        {
+            _id: this._id,
+            email: this.email,
+            username: this.username,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY, // <-- use env value
+        }
+    );
+};
 
-)
-}
-
-
-userSCHEMA.methods.generateRefreshToken = async function () {
-    return jwt.sign({
-        _id : this._id
-    },
-    process.env.REFRESH_TOKEN_SECRET , 
-    {
-        expiresIn : 'REFRESH_TOKEN_EXPIRY'
-    }
-)
-}
-
-
+userSCHEMA.methods.generateRefreshToken = function () {
+    return jwt.sign(
+        {
+            _id: this._id,
+        },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+            expiresIn: process.env.REFRESH_TOKEN_EXPIRY, // <-- use env value
+        }
+    );
+};
 
 
 

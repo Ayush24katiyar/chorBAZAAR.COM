@@ -69,14 +69,14 @@ const registerUSER = asyncHandler(async (req, res) => {
 
 const loginUSER = asyncHandler(async (req, res) => {
   //get data from
-  const [email, password] = req.body;
+  const {email, password} = req.body;
 
   //validatiom
   if (!email) {
     throw apierror(400, "fill the form correctly !");
   }
 
-  const user = USER.findOne({ email });
+  const user = await USER.findOne({ email });
   if (!user) {
     throw new apierror(
       400,
@@ -85,7 +85,7 @@ const loginUSER = asyncHandler(async (req, res) => {
   }
 
   // validation password
-  const isPasswordValid = USER.isPasswordCorrect(password);
+  const isPasswordValid = await user.ispasswordcorrect(password);
   if (!isPasswordValid) {
     throw new apierror(400, "your password is incorrect ");
   }
@@ -112,7 +112,7 @@ const loginUSER = asyncHandler(async (req, res) => {
     .json(
       new apiresponse(
         200,
-        { user: loggeddInUser, accesstoken, refreshtoken },
+        { user: loggedInUser, accesstoken, refreshtoken },
         "user logged in successfully"
       )
     );

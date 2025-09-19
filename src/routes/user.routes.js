@@ -20,7 +20,7 @@ import {
  // USER ROUTES 
 
  router.route("/register").post(registerUSER)
- router.route("/login").post(verifyJWT , loginUSER)
+ router.route("/login").post(loginUSER)
  router.route("/logout").post(verifyJWT ,  logoutUSER)
 
 

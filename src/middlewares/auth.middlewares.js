@@ -15,7 +15,7 @@ export const verifyJWT = asyncHandler(async (req , _ , next ) =>  {
 
     try {
         const decodedToken = jwt.verify(Token,process.env.ACCESS_TOKEN_SECRET)
-        const user = await USER.findById(decodedToken?._id).select("-password -refershtoken")
+        const user = await USER.findById(decodedToken?._id).select("-password -refreshtoken")
         
         
         
@@ -23,7 +23,7 @@ export const verifyJWT = asyncHandler(async (req , _ , next ) =>  {
             throw new apierror(400,"user is not avialable")
         }
 
-        req.USER = USER
+        req.user = user
 
         next()
 
