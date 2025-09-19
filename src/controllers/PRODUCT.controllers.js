@@ -6,27 +6,25 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
 const registerPRODUCT = asyncHandler(async (req, res) => {
-  const [
+  const {
     productNAME,
     productPRICE,
     productQUANTITY,
     productCATEGORY,
     productDESCRIPTION,
-  ] = req.body;
+   } = req.body;
   // validation
   if (
-    [
-      productNAME,
-      productPRICE,
-      productQUANTITY,
-      productCATEGORY,
-      productDESCRIPTION,
-    ].some((fileds) => fileds?.trim() === " ")
+    !productNAME || typeof productNAME !== "string" || productNAME.trim() === "" ||
+    productPRICE === undefined || productPRICE === null ||
+    productQUANTITY === undefined || productQUANTITY === null ||
+    !productCATEGORY || typeof productCATEGORY !== "string" || productCATEGORY.trim() === "" ||
+    !productDESCRIPTION || typeof productDESCRIPTION !== "string" || productDESCRIPTION.trim() === ""
   ) {
-    throw new apierror(400, "something went wrong completely !");
+    throw new apierror(400, "All fields are required and must be valid!");
   }
 
-  const existedPRODUCT = await PRODUCT.findone({ productNAME });
+  const existedPRODUCT = await PRODUCT.findOne({ productNAME });
   if (existedPRODUCT) {
     throw new apierror(
       400,
@@ -55,6 +53,7 @@ const registerPRODUCT = asyncHandler(async (req, res) => {
         new apiresponse(200, createdPRODUCT, "product created successfully !")
       );
   } catch (error) {
+    console.error("Product creation error:", error);
     throw new apierror(
       400,
       "something went wrong while created your product !"

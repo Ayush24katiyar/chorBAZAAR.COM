@@ -20,11 +20,11 @@ app.use(cors({
 app.use(cookieParser())
 
 import userRoutes from "../src/routes/user.routes.js"
-import porductRoutes from "../src/routes/product.routes.js"
+import productRoutes from "../src/routes/product.routes.js"
 import { verifyJWT } from "./middlewares/auth.middlewares.js"
 
 app.use("/api/v1/user", userRoutes)
-app.use("/api/v1/product" ,verifyJWT , requiredROLE('seller') , porductRoutes)
+app.use("/api/v1/product"  , productRoutes)
 
 
 
