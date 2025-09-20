@@ -63,7 +63,7 @@ const registerPRODUCT = asyncHandler(async (req, res) => {
 
 
 const getPRODUCT = asyncHandler(async (req ,res) => {
-    const products = await PRODUCT.find({}).select("-_id  -createdAt -updatedAt -__v")
+    const products = await PRODUCT.find({}).select(" -createdAt -updatedAt -__v")
     return res.status(200).json(new apiresponse(200 , products , "current product listed details"))
 })
 
