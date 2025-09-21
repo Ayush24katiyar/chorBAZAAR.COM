@@ -21,11 +21,12 @@ app.use(cookieParser())
 
 import userRoutes from "../src/routes/user.routes.js"
 import productRoutes from "../src/routes/product.routes.js"
-import { verifyJWT } from "./middlewares/auth.middlewares.js"
+import cartRoutes from "../src/routes/cart.routes.js"
+
 
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/product"  , productRoutes)
-
+app.use("/api/v1/cart", cartRoutes)
 
 
 
