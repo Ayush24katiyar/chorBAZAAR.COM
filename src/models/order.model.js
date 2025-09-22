@@ -4,16 +4,29 @@ const orderSCHEMA = new Schema({
     userId : {
         type :  mongoose.Schema.ObjectId , 
         ref : "USER"
-    } , 
-    orderDate : {
-        type : String
     } ,
-    amount : {
-        type :  Number
-    }
+    
+    product : [
+        {
+            productID : {
+                type : mongoose.Schema.ObjectId ,
+                ref : "PRODUCT"
+            } ,
+            quantity : Number , 
+            price : Number ,
+
+        }
+
+    ] ,
+    
+    // orderDate : {
+    //     type : Date , 
+    //     default : Date.now , 
+    // } ,
+   
 
 } , {
     timestamps : true
 })
 
-export default ORDER = mongoose.model("ORDER" , orderSCHEMA)
+export const ORDER = mongoose.model("ORDER" , orderSCHEMA)

@@ -22,11 +22,13 @@ app.use(cookieParser())
 import userRoutes from "../src/routes/user.routes.js"
 import productRoutes from "../src/routes/product.routes.js"
 import cartRoutes from "../src/routes/cart.routes.js"
+import orderRoutes from "../src/routes/order.routes.js"
 
 
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/product"  , productRoutes)
 app.use("/api/v1/cart", cartRoutes)
+app.use("/api/v1/order", orderRoutes)
 
 
 
